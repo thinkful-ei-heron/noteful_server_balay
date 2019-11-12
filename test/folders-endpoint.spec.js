@@ -100,7 +100,12 @@ describe('Folders endpoints', function() {
             supertest(app)
               .get('/api/folders')
               .expect(expectedFolders)
-          );
+          )
+          .then(res => 
+            supertest(app)
+              .get('/api/notes')
+              .expect(expectedNotes)
+          )
       });
     });
     context('given there are no folders', () => {
